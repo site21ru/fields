@@ -1,0 +1,8 @@
+{
+    "name": "site21/fields-plugin",
+    "type": "october-plugin",
+    "description": "Enter a meaningful description here",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
