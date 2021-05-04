@@ -1,0 +1,7 @@
+1.0.1: First version of Fields
+1.0.2:
+  - Create table with Fields
+  - create_fields_table.php
+1.0.3:
+  - Add module field to table
+  - add_module_field.php

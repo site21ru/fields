@@ -1,0 +1,60 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+      label: ID
+      disabled: true
+      hidden: true
+
+    name:
+      label: 'site21.fields::lang.field.name'
+      type: text
+      span: left
+      required: 1
+
+    slug:
+        label: 'site21.fields::lang.field.slug'
+        span: right
+        required: 1
+        preset:
+          field: name
+          type: slug
+        type: text
+
+    type:
+      label: 'site21.fields::lang.field.type'
+      span: left
+      required: 1
+      type: dropdown
+      default: text
+      context:
+          - create
+      options:
+        text: 'site21.fields::lang.type.text'
+        textarea: 'site21.fields::lang.type.textarea'
+
+
+    module:
+      label: 'site21.fields::lang.field.module'
+      span: right
+      required: 1
+      type: dropdown
+      default: product
+      context:
+          - create
+      options:
+        product: 'site21.fields::lang.module.product'
+        offer: 'site21.fields::lang.module.offer'
+        category: 'site21.fields::lang.module.category'
+        brand: 'site21.fields::lang.module.brand'
+
+    active:
+      label: 'site21.fields::lang.field.active'
+      span: left
+      required: 1
+      type: switch
+      comment: 'site21.fields::lang.active.comment'
+      on: 'site21.fields::lang.active.on'
+      off: 'site21.fields::lang.active.off'
