@@ -1,7 +1,7 @@
 {
     "name": "site21/fields-plugin",
     "type": "october-plugin",
-    "description": "Enter a meaningful description here",
+    "description": "A simple plugin for adding custom fields to Shopaholic admin panel (category, brand, offer or product)",
     "require": {
         "composer/installers": "~1.0"
     }
