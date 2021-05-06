@@ -48,14 +48,16 @@ class Plugin extends PluginBase
                 ],
             ]);
         });
-        Event::subscribe(ExtendProductFieldsHandler::class);
-        Event::subscribe(ExtendProductModel::class);
-        Event::subscribe(ExtendOfferFieldsHandler::class);
-        Event::subscribe(ExtendOfferModel::class);
-        Event::subscribe(ExtendCategoryFieldsHandler::class);
-        Event::subscribe(ExtendCategoryModel::class);
-        Event::subscribe(ExtendBrandFieldsHandler::class);
-        Event::subscribe(ExtendBrandModel::class);
+        if (class_exists('Lovata\Toolbox\Classes\Event\AbstractBackendFieldHandler')) {
+            Event::subscribe(ExtendProductFieldsHandler::class);
+            Event::subscribe(ExtendProductModel::class);
+            Event::subscribe(ExtendOfferFieldsHandler::class);
+            Event::subscribe(ExtendOfferModel::class);
+            Event::subscribe(ExtendCategoryFieldsHandler::class);
+            Event::subscribe(ExtendCategoryModel::class);
+            Event::subscribe(ExtendBrandFieldsHandler::class);
+            Event::subscribe(ExtendBrandModel::class);
+        }
     }
 
     public function registerComponents()
