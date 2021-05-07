@@ -3,6 +3,7 @@
 use Backend;
 use System\Classes\PluginBase;
 use Event;
+use Schema;
 use Site21\Fields\Classes\Event\Product\ExtendProductFieldsHandler;
 use Site21\Fields\Classes\Event\Product\ExtendProductModel;
 use Site21\Fields\Classes\Event\Offer\ExtendOfferFieldsHandler;
@@ -48,7 +49,7 @@ class Plugin extends PluginBase
                 ],
             ]);
         });
-        if (class_exists('Lovata\Toolbox\Classes\Event\AbstractBackendFieldHandler')) {
+        if (class_exists('Lovata\Toolbox\Classes\Event\AbstractBackendFieldHandler') && Schema::hasTable('site21_shopaholic_fields')) {
             Event::subscribe(ExtendProductFieldsHandler::class);
             Event::subscribe(ExtendProductModel::class);
             Event::subscribe(ExtendOfferFieldsHandler::class);
