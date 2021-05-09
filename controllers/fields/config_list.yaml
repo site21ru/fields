@@ -9,7 +9,7 @@ list: $/site21/fields/models/field/columns.yaml
 modelClass: Site21\Fields\Models\Field
 
 # List Title
-title: Manage Fields
+title: 'site21.fields::lang.fields.manage'
 
 # Link URL for each record
 recordUrl: site21/fields/fields/update/:id

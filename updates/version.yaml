@@ -5,3 +5,9 @@
 1.0.3:
   - Add module field to table
   - add_module_field.php
+1.0.4:
+  - Add tab field to table
+  - add_tab_field.
+1.0.5:
+  - Add span, size and comments fields to table
+  - add_span_size_comment.php

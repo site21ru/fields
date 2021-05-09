@@ -15,7 +15,6 @@ class Field extends Model
      */
     public $table = 'site21_shopaholic_fields';
 
-
     /**
      * @var array Guarded fields
      */
@@ -34,6 +33,7 @@ class Field extends Model
         'slug'      => 'required|unique:site21_shopaholic_fields',
         'type'      => 'required',
         'module'    => 'required',
+        'tab'       => 'required',
     ];
 
     /**
@@ -80,6 +80,7 @@ class Field extends Model
     public $attachMany = [];
 
 
+
     function getModuleTable($module){
         $moduleTable = [
             'product'    => 'lovata_shopaholic_products',
@@ -101,7 +102,10 @@ class Field extends Model
         Schema::table($obTable, function ($table) {
             $type = [
                 'text'       => 'string',
-                'textarea'   => 'text'
+                'textarea'   => 'text',
+                'number' =>  'integer',
+                'email' => 'string',
+                'switch' => 'string',
             ];
             $obType = $type[$this->type];
             $table->$obType($this->slug)->nullable();
@@ -125,5 +129,63 @@ class Field extends Model
         }
     }
 
+
+    public function getTypeOptions() {
+        return [
+            'text' => 'site21.fields::lang.type.text',
+            'textarea' => 'site21.fields::lang.type.textarea',
+            'number' =>  'site21.fields::lang.type.number',
+            'email' =>  'site21.fields::lang.type.email',
+            'switch' =>  'site21.fields::lang.type.switch',
+        ];
+    }
+
+    public function getModuleOptions() {
+        return [
+            'product' => 'site21.fields::lang.module.product',
+            'offer' => 'site21.fields::lang.module.offer',
+            'category' => 'site21.fields::lang.module.category',
+            'brand' => 'site21.fields::lang.module.brand'
+        ];
+    }
+
+    public function getTabOptions($value, $data)
+    {
+        $module = isset($data->module) ? $data->module : key($this->getModuleOptions());
+        $options = [
+            0 => 'site21.fields::lang.fields.tab',
+            'lovata.toolbox::lang.tab.settings' => 'lovata.toolbox::lang.tab.settings',
+            'lovata.toolbox::lang.tab.description' => 'lovata.toolbox::lang.tab.description',
+            'lovata.toolbox::lang.tab.images' => 'lovata.toolbox::lang.tab.images',
+        ];
+        if($module) {
+            if ($module == 'product') {
+                $options['lovata.shopaholic::lang.tab.offer'] = 'lovata.shopaholic::lang.tab.offer';
+            }
+            elseif ($module == 'offer') {
+                $options['lovata.shopaholic::lang.tab.price'] = 'lovata.shopaholic::lang.tab.price';
+            }
+        }
+        return $options;
+    }
+
+    public function getSpanOptions() {
+        return [
+            'full' => 'full',
+            'auto' => 'auto',
+            'left' => 'left',
+            'right' => 'right'
+        ];
+    }
+
+    public function getSizeOptions() {
+        return [
+            'tiny' => 'tiny',
+            'small' => 'small',
+            'large' => 'large',
+            'huge' => 'huge',
+            'giant' => 'giant'
+        ];
+    }
 
 }

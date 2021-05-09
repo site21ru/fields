@@ -8,6 +8,15 @@ fields:
       disabled: true
       hidden: true
 
+    active:
+      label: 'site21.fields::lang.field.active'
+      span: left
+      required: 1
+      type: switch
+      comment: 'site21.fields::lang.active.comment'
+      on: 'site21.fields::lang.active.on'
+      off: 'site21.fields::lang.active.off'
+
     name:
       label: 'site21.fields::lang.field.name'
       type: text
@@ -15,14 +24,16 @@ fields:
       required: 1
 
     slug:
-        label: 'site21.fields::lang.field.slug'
-        span: right
-        required: 1
-        preset:
-          field: name
-          type: slug
-        type: text
+      label: 'site21.fields::lang.field.slug'
+      span: right
+      required: 1
+      preset:
+        field: name
+        type: slug
+      type: text
 
+tabs:
+  fields:
     type:
       label: 'site21.fields::lang.field.type'
       span: left
@@ -31,9 +42,7 @@ fields:
       default: text
       context:
           - create
-      options:
-        text: 'site21.fields::lang.type.text'
-        textarea: 'site21.fields::lang.type.textarea'
+      tab: 'site21.fields::lang.tab.settings'
 
 
     module:
@@ -43,18 +52,34 @@ fields:
       type: dropdown
       default: product
       context:
-          - create
-      options:
-        product: 'site21.fields::lang.module.product'
-        offer: 'site21.fields::lang.module.offer'
-        category: 'site21.fields::lang.module.category'
-        brand: 'site21.fields::lang.module.brand'
+        - create
+      tab: 'site21.fields::lang.tab.settings'
 
-    active:
-      label: 'site21.fields::lang.field.active'
-      span: left
-      required: 1
-      type: switch
-      comment: 'site21.fields::lang.active.comment'
-      on: 'site21.fields::lang.active.on'
-      off: 'site21.fields::lang.active.off'
+    tab:
+      label: 'site21.fields::lang.field.tab'
+      span: auto
+      type: dropdown
+      default: 'site21.fields::lang.fields.tab'
+      dependsOn: module
+      tab: 'site21.fields::lang.tab.settings'
+
+    comment:
+      label: 'site21.fields::lang.field.comment'
+      span: auto
+      tab: 'site21.fields::lang.tab.additional'
+      comment: 'site21.fields::lang.comments.comment'
+
+    span:
+      label: 'site21.fields::lang.field.span'
+      span: auto
+      type: dropdown
+      default: full
+      tab: 'site21.fields::lang.tab.additional'
+
+    size:
+      label: 'site21.fields::lang.field.size'
+      span: auto
+      type: dropdown
+      default: tiny
+      tab: 'site21.fields::lang.tab.additional'
+      comment: 'site21.fields::lang.comments.size'

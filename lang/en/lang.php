@@ -25,13 +25,22 @@
         'save'  				=> 'Save',
         'save_and_close'  		=> 'Save and Close',
     ],
+    'fields'      => [
+        'name'                  => 'field',
+        'manage'                => 'Manage fields',
+        'tab'                   => 'Other',
+    ],
     'field'      => [
         'name'         			=> 'Field name',
         'slug'         			=> 'Slug',
         'type'         			=> 'Field type',
         'module'         		=> 'Module',
         'options'         		=> 'Options',
+        'tab'                   => 'Tab',
         'active'                => 'Active field',
+        'comment'               => 'Comment',
+        'span'                  => 'Span',
+        'size'                  => 'Size'
     ],
     'type'       => [
         'text'         			=> 'Text',
@@ -39,8 +48,9 @@
         'dropdown'         		=> 'Dropdown',
         'checkbox'         		=> 'Checkbox',
         'radio'         		=> 'Radio',
-        'number'                => 'Number',
+        'number'                => 'Integer',
         'email'                 => 'E-mail',
+        'switch'                => 'Switch',
     ],
     'module'       => [
         'product'         		=> 'Product',
@@ -52,5 +62,13 @@
         'on'                    => 'Yea',
         'off'                   => 'No',
         'comment'               => 'If disabled, it is not displayed in forms',
+    ],
+    'tab'       => [
+        'settings'              => 'Main settings',
+        'additional'            => 'Additional',
+    ],
+    'comments'       => [
+        'comment'               => 'Description, displayed under the field',
+        'size'                  => 'Sets the field size for fields where possible, for example, for textarea',
     ],
 ];

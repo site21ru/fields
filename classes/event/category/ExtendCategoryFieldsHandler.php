@@ -13,13 +13,20 @@ class ExtendCategoryFieldsHandler extends AbstractBackendFieldHandler
     protected function extendFields($obWidget)
     {
         // Получаем все кастомные поля только для категории
-        $fields = Field::where('module', 'category')->where('active', 1)->select('name', 'slug', 'type')->get();
+        $fields = Field::where('module', 'category')
+            ->where('active', 1)
+            ->select('name', 'slug', 'type', 'tab', 'span', 'size', 'comment')
+            ->get();
         if($fields) {
             $arAdditionFields = [];
             foreach($fields as $field) {
                 $arAdditionFields[$field->slug] = [
                     'label'   => $field->name,
                     'type'    => $field->type,
+                    'tab'     => $field->tab,
+                    'span'    => $field->span,
+                    'size'    => $field->size,
+                    'comment' => $field->comment
                 ];
             }
 
