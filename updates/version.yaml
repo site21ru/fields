@@ -19,4 +19,6 @@
   - Fixed bug with tab in version.yaml
   - add_tab_field.php
 1.0.7:
-  - Add permission to access controller
+  - Add permission to add
+1.0.7.1:
+  - Error fixing in add_span_size_comment.php

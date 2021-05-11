@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 
 
-class AddtabField extends Migration
+class AddspansizecommentField extends Migration
 {
     const TABLE_NAME = 'site21_shopaholic_fields';
     
