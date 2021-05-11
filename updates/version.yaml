@@ -11,3 +11,5 @@
 1.0.5:
   - Add span, size and comments fields to table
   - add_span_size_comment.php
+1.0.5.1:
+  - Fixed bug in version.yaml
