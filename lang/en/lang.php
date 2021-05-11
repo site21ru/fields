@@ -71,4 +71,7 @@
         'comment'               => 'Description, displayed under the field',
         'size'                  => 'Sets the field size for fields where possible, for example, for textarea',
     ],
+    'permissions'       => [
+        'add'                   => 'Add additional fields to Shopaholic',
+    ],
 ];

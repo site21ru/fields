@@ -46,6 +46,9 @@ class Plugin extends PluginBase
                     'icon'  => 'icon-tags',
                     'url'   => Backend::url('site21/fields/fields'),
                     'order' => 550,
+                    'permissions' => [
+                        'site21.fields.add_field_permission',
+                    ],
                 ],
             ]);
         });
@@ -72,28 +75,12 @@ class Plugin extends PluginBase
 
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
         return [
-            'site21.fields.some_permission' => [
-                'tab' => 'Fields',
-                'label' => 'Some permission'
+            'site21.fields.add_field_permission' => [
+                'tab' => e(trans('site21.fields::lang.plugin.name')),
+                'label' => e(trans('site21.fields::lang.permissions.add'))
             ],
         ];
     }
 
-    public function registerNavigation()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'fields' => [
-                'label'       => 'Fields',
-                'url'         => Backend::url('site21/fields/mycontroller'),
-                'icon'        => 'icon-leaf',
-                'permissions' => ['site21.fields.*'],
-                'order'       => 500,
-            ],
-        ];
-    }
 }

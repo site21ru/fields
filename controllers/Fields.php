@@ -16,6 +16,8 @@ class Fields extends Controller
         'Backend.Behaviors.ListController'
     ];
 
+    public $requiredPermissions = ['site21.fields.add_field_permission'];
+
     /**
      * @var string Configuration file for the `FormController` behavior.
      */
