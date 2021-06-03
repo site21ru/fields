@@ -1,5 +1,6 @@
 # oc-shopaholic-fields
 Простой плагин добавления в админку плагина Shopaholic для OctoberCMS своих текстовых полей. Поддерживает RainLab.Translate
+
 Подробная информация о том как разработан плагин описана на странице "[Shopaholic добавить поля](https://site21.ru/blog/shopaholic-add-fields)"
 
 На данные момент можно добавить следующие типы полей:
