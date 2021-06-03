@@ -4,14 +4,12 @@ use Backend;
 use System\Classes\PluginBase;
 use Event;
 use Schema;
-use Site21\Fields\Classes\Event\Product\ExtendProductFieldsHandler;
-use Site21\Fields\Classes\Event\Product\ExtendProductModel;
-use Site21\Fields\Classes\Event\Offer\ExtendOfferFieldsHandler;
-use Site21\Fields\Classes\Event\Offer\ExtendOfferModel;
-use Site21\Fields\Classes\Event\Category\ExtendCategoryFieldsHandler;
-use Site21\Fields\Classes\Event\Category\ExtendCategoryModel;
-use Site21\Fields\Classes\Event\Brand\ExtendBrandFieldsHandler;
-use Site21\Fields\Classes\Event\Brand\ExtendBrandModel;
+use Lovata\Shopaholic\Models\Product;
+use Lovata\Shopaholic\Models\Category;
+use Lovata\Shopaholic\Models\Brand;
+use Lovata\Shopaholic\Models\Offer;
+use Site21\Fields\Models\Field;
+use Illuminate\Support\Str;
 
 /**
  * Fields Plugin Information File
@@ -52,16 +50,74 @@ class Plugin extends PluginBase
                 ],
             ]);
         });
-        if (class_exists('Lovata\Toolbox\Classes\Event\AbstractBackendFieldHandler') && Schema::hasTable('site21_shopaholic_fields')) {
-            Event::subscribe(ExtendProductFieldsHandler::class);
-            Event::subscribe(ExtendProductModel::class);
-            Event::subscribe(ExtendOfferFieldsHandler::class);
-            Event::subscribe(ExtendOfferModel::class);
-            Event::subscribe(ExtendCategoryFieldsHandler::class);
-            Event::subscribe(ExtendCategoryModel::class);
-            Event::subscribe(ExtendBrandFieldsHandler::class);
-            Event::subscribe(ExtendBrandModel::class);
+        if (Schema::hasTable('site21_shopaholic_fields')) {
+            $models = [
+                Product::class,
+                Category::class,
+                Offer::class,
+                Brand::class,
+            ];
+            foreach($models as $module) {
+                $model = new $module;
+                $model->extend(function ($model) {
+                    $module = (new Field)->getModuleTable($model->table, 'key');
+                    if(!$module) {
+                        return;
+                    }
+                    $query = Field::where('module', $module)->where('active', 1)->select('slug','settings');
+                    $fields = $query->get();
+                    if($fields) {
+                        $array = [];
+                        foreach($fields as $field) {
+                            $model->fillable[] = $field->slug;    
+                        }
+                    }
+
+                    // добавляем кэшируемые поля
+                    $cached = $query->where('settings->cached', '1')->pluck('slug')->toArray();
+                    if($cached) {
+                        $model->addCachedField($cached);
+                    }
+
+                    // добавляем переводимые поля
+                    $array = [];
+                    foreach($fields as $field) {
+                        if($field->settings['translatable'] == 1) {
+                            $array[] = $field->slug;
+                        }
+                    }
+                    if($array) {
+                        $model->translatable = array_merge($model->translatable,$array);
+                    }
+                });
+                
+                Event::listen('backend.form.extendFieldsBefore', function($widget) {
+                    $module = (new Field)->getModuleTable($widget->model->table, 'key');
+                    if(!$module) {
+                        return;
+                    }
+                    // Получаем все кастомные поля только для обходимого модуля
+                    $fields = Field::where('module', $module)
+                        ->where('active', 1)
+                        ->select('name', 'slug', 'type', 'tab', 'span', 'size', 'comment')
+                        ->get();
+                        
+                    if($fields) {
+                        foreach($fields as $field) {
+                            $widget->tabs['fields'][$field->slug] = [
+                                'label'   => $field->name,
+                                'type'    => $field->type,
+                                'tab'     => $field->tab,
+                                'span'    => $field->span,
+                                'size'    => $field->size,
+                                'comment' => $field->comment
+                            ];
+                        }
+                    }
+                });
+            }
         }
+
     }
 
     public function registerComponents()
@@ -82,5 +138,6 @@ class Plugin extends PluginBase
             ],
         ];
     }
+
 
 }

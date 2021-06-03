@@ -40,7 +40,9 @@
         'active'                => 'Active field',
         'comment'               => 'Comment',
         'span'                  => 'Span',
-        'size'                  => 'Size'
+        'size'                  => 'Size',
+        'translatable'          => 'Translatable',
+        'cached'                => 'Cached',
     ],
     'type'       => [
         'text'         			=> 'Text',
@@ -70,6 +72,7 @@
     'comments'       => [
         'comment'               => 'Description, displayed under the field',
         'size'                  => 'Sets the field size for fields where possible, for example, for textarea',
+        'translatable'          => 'For Translate plugin',
     ],
     'permissions'       => [
         'add'                   => 'Add additional fields to Shopaholic',

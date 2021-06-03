@@ -11,9 +11,19 @@ fields:
     active:
       label: 'site21.fields::lang.field.active'
       span: left
-      required: 1
       type: switch
+      default: 1
       comment: 'site21.fields::lang.active.comment'
+      on: 'site21.fields::lang.active.on'
+      off: 'site21.fields::lang.active.off'
+
+    settings[translatable]:
+      label: 'site21.fields::lang.field.translatable'
+      span: right
+      type: switch
+      default: 0
+      tab: 'site21.fields::lang.tab.additional'
+      comment: 'site21.fields::lang.comments.translatable'
       on: 'site21.fields::lang.active.on'
       off: 'site21.fields::lang.active.off'
 
@@ -73,7 +83,7 @@ tabs:
       label: 'site21.fields::lang.field.span'
       span: auto
       type: dropdown
-      default: full
+      default: auto
       tab: 'site21.fields::lang.tab.additional'
 
     size:
@@ -83,3 +93,12 @@ tabs:
       default: tiny
       tab: 'site21.fields::lang.tab.additional'
       comment: 'site21.fields::lang.comments.size'
+
+    settings[cached]:
+      label: 'site21.fields::lang.field.cached'
+      span: auto
+      type: switch
+      default: 1
+      tab: 'site21.fields::lang.tab.additional'
+      on: 'site21.fields::lang.active.on'
+      off: 'site21.fields::lang.active.off'

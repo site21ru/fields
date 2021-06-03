@@ -44,7 +44,7 @@ class Field extends Model
     /**
      * @var array Attributes to be cast to JSON
      */
-    protected $jsonable = [];
+    protected $jsonable = ['settings'];
 
     /**
      * @var array Attributes to be appended to the API representation of the model (ex. toArray())
@@ -81,14 +81,18 @@ class Field extends Model
 
 
 
-    function getModuleTable($module){
+    function getModuleTable($module, $get = FALSE){
         $moduleTable = [
             'product'    => 'lovata_shopaholic_products',
             'offer'      => 'lovata_shopaholic_offers',
             'category'   => 'lovata_shopaholic_categories',
             'brand'      => 'lovata_shopaholic_brands',
         ];
-        $obTable = $moduleTable[$module];
+        if($get == 'key') {
+            $obTable = array_keys($moduleTable, $module);
+        } else {
+            $obTable = $moduleTable[$module];
+        }
         return $obTable;
     }
 

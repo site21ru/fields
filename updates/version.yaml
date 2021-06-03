@@ -22,3 +22,6 @@
   - Add permission to add
 1.0.7.1:
   - Error fixing in add_span_size_comment.php
+1.0.8:
+  - Add support for the Translate plugin. Add cached fields
+  - add_settings_field.php
