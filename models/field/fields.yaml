@@ -102,3 +102,12 @@ tabs:
       tab: 'site21.fields::lang.tab.additional'
       on: 'site21.fields::lang.active.on'
       off: 'site21.fields::lang.active.off'
+
+    settings[inlist]:
+      label: 'site21.fields::lang.field.inlist'
+      span: auto
+      type: switch
+      default: 0
+      tab: 'site21.fields::lang.tab.additional'
+      on: 'site21.fields::lang.active.on'
+      off: 'site21.fields::lang.active.off'

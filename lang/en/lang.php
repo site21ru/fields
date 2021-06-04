@@ -43,6 +43,7 @@
         'size'                  => 'Size',
         'translatable'          => 'Translatable',
         'cached'                => 'Cached',
+        'inlist'                => 'Add column to List widget',
     ],
     'type'       => [
         'text'         			=> 'Text',

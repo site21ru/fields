@@ -115,6 +115,29 @@ class Plugin extends PluginBase
                         }
                     }
                 });
+
+                Event::listen('backend.list.extendColumns', function ($listWidget) {
+                    
+                    $module = (new Field)->getModuleTable($listWidget->model->table, 'key');
+                    if(!$module) {
+                        return;
+                    }
+
+                    $fields = Field::where('module', $module)->where('active', 1)->where('settings->inlist', '1')->select('slug', 'name', 'type')->get();
+                        
+                    if($fields) {
+                        $columns = [];
+                        foreach($fields as $field) {
+                            $columns = [
+                                $field->slug => [
+                                    'label'   => $field->name,
+                                    'type'    => $field->type,
+                                ]
+                            ];
+                        }
+                    }
+                    $listWidget->addColumns($columns);
+                });
             }
         }
 
