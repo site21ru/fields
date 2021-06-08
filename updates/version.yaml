@@ -27,3 +27,5 @@
   - add_settings_field.php
 1.0.9:
   - Ability to add columns to List widget
+1.0.9.1:
+  - Fixed one error

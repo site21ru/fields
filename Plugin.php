@@ -92,6 +92,9 @@ class Plugin extends PluginBase
                 });
                 
                 Event::listen('backend.form.extendFieldsBefore', function($widget) {
+                    if ($widget->isNested || $widget->alias != 'form') {
+                        return;
+                    }
                     $module = (new Field)->getModuleTable($widget->model->table, 'key');
                     if(!$module) {
                         return;
