@@ -3,8 +3,8 @@
     "type": "october-plugin",
     "description": "A simple plugin for adding custom fields to Shopaholic admin panel (category, brand, offer or product)",
     "require": {
-        "lovata/shopaholic-plugin": "^1.30",
-        "lovata/toolbox-plugin": "^1.33",
+        "lovata/shopaholic-plugin": ">1.30",
+        "lovata/toolbox-plugin": ">1.33",
         "composer/installers": "~1.0"
     }
 }
